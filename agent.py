@@ -1,18 +1,3 @@
-
-
-# ======================================================
-# 🎯 COFFEE SHOP VOICE AGENT TUTORIAL 
-# 👨‍⚕️ Tutorial by Dr. Abhishek: https://www.youtube.com/@drabhishek.5460/videos
-# 💼 Professional Voice AI Development Course
-# 🚀 Advanced Agent Patterns & Real-world Implementation
-# ======================================================
-#
-# 🎉 SUBSCRIBE TO DR. ABHISHEK FOR MORE AMAZING TUTORIALS!
-# 📺 YouTube: https://www.youtube.com/@drabhishek.5460/videos
-# 💡 Master AI Development with Real Projects
-#
-# ======================================================
-
 import logging
 import json
 import os
@@ -20,13 +5,6 @@ import asyncio
 from datetime import datetime
 from typing import Annotated, Literal
 from dataclasses import dataclass, field
-
-print("\n" + "🎯" * 50)
-print("🚀 COFFEE SHOP AGENT - TUTORIAL BY DR. ABHISHEK")
-print("📚 SUBSCRIBE: https://www.youtube.com/@drabhishek.5460/videos")
-print("💡 agent.py LOADED SUCCESSFULLY!")
-print("🎯" * 50 + "\n")
-
 from dotenv import load_dotenv
 from pydantic import Field
 from livekit.agents import (
@@ -205,11 +183,6 @@ async def complete_order(ctx: RunContext[Userdata]) -> str:
         return f"""🎉 PERFECT! Your {order.size} {order.drinkType} with {order.milk} milk{extras_text} is confirmed, {order.name}! 
 
 ⏰ We're preparing your drink now - it'll be ready in 3-5 minutes!
-
-📺 **Thanks for using our AI Barista!** 
-👉 Don't forget to SUBSCRIBE to Dr. Abhishek for more amazing tutorials: 
-   https://www.youtube.com/@drabhishek.5460/videos"""
-        
     except Exception as e:
         print(f"❌ ORDER SAVE FAILED: {e}")
         return "⚠️ Order recorded but there was a small issue. Don't worry, we'll make your drink right away!"
@@ -228,7 +201,7 @@ class BaristaAgent(Agent):
     def __init__(self):
         super().__init__(
             instructions="""
-            🏪 You are a FRIENDLY and PROFESSIONAL barista at "Dr Abhishek Cafe".
+            🏪 You are a FRIENDLY and PROFESSIONAL barista at "Ryn Caffe".
             
             🎯 MISSION: Take coffee orders by systematically collecting:
             ☕ Drink Type: latte, cappuccino, americano, espresso, mocha, coffee, cold brew, matcha
@@ -302,7 +275,6 @@ def save_order_to_json(order: OrderState) -> str:
         print(f"📁 Location: {path}")
         print(f"👤 Customer: {order.name}")
         print(f"☕ Order: {order.get_summary()}")
-        print("📺 Tutorial by: Dr. Abhishek - SUBSCRIBE!")
         print("✅" * 30 + "\n")
         
         return path
@@ -351,14 +323,6 @@ async def entrypoint(ctx: JobContext):
     """🎬 Main agent entrypoint - handles customer sessions"""
     ctx.log_context_fields = {"room": ctx.room.name}
 
-    print("\n" + "🏪" * 25)
-    print("🚀 BREW & BEAN CAFE - AI BARISTA")
-    print("👨‍⚕️ Tutorial by Dr. Abhishek")
-    print("📺 YouTube: https://www.youtube.com/@drabhishek.5460/videos")
-    print("📁 Orders folder:", get_orders_folder())
-    print("🎤 Ready to take customer orders!")
-    print("🏪" * 25 + "\n")
-
     # Run test to verify everything works
     test_order_saving()
 
@@ -399,14 +363,6 @@ async def entrypoint(ctx: JobContext):
 
     await ctx.connect()
 
-# ======================================================
-# ⚡ APPLICATION BOOTSTRAP & LAUNCH
-# ======================================================
-if __name__ == "__main__":
-    print("\n" + "⚡" * 25)
-    print("🎬 STARTING COFFEE SHOP AGENT...")
-    print("👨‍⚕️ Developed from Dr. Abhishek's Tutorial")
-    print("📺 SUBSCRIBE: https://www.youtube.com/@drabhishek.5460/videos")
-    print("⚡" * 25 + "\n")
+
     
     cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint, prewarm_fnc=prewarm))
